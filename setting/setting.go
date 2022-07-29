@@ -1,4 +1,4 @@
-package settings
+package setting
 
 import (
 	"fmt"
@@ -10,13 +10,14 @@ import (
 var Conf = new(AppConfig)
 
 type AppConfig struct {
-	Name         string `mapstructure:"name"`
-	Mode         string `mapstructure:"mode"`
-	Port         int    `mapstructure:"port"`
-	Version      string `mapstructure:"version"`
-	*LogConfig   `mapstructure:"log"`
-	*MySQLConfig `mapstructure:"mysql"`
-	*RedisConfig `mapstructure:"redis"`
+	Name             string `mapstructure:"name"`
+	Mode             string `mapstructure:"mode"`
+	Port             int    `mapstructure:"port"`
+	Version          string `mapstructure:"version"`
+	*LogConfig       `mapstructure:"log"`
+	*MySQLConfig     `mapstructure:"mysql"`
+	*RedisConfig     `mapstructure:"redis"`
+	*SnowFlakeConfig `mapstructure:"snowflake"`
 }
 
 type LogConfig struct {
@@ -43,6 +44,11 @@ type RedisConfig struct {
 	DB       int    `mapstructure:"db"`
 	PoolSize int    `mapstructure:"pool_size"`
 	Password string `mapstructure:"password"`
+}
+
+type SnowFlakeConfig struct {
+	StartTime string `mapstructure:"start_time"`
+	MachineID int64  `mapstructure:"machine_id"`
 }
 
 func Init() (err error) {

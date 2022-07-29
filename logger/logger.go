@@ -1,7 +1,7 @@
 package logger
 
 import (
-	"RedBubble/settings"
+	"RedBubble/setting"
 	"net"
 	"net/http"
 	"net/http/httputil"
@@ -23,7 +23,7 @@ import (
 */
 
 //1、初始化Logger
-func Init(cfg *settings.LogConfig) (err error) {
+func Init(cfg *setting.LogConfig) (err error) {
 	//1.1 设置WriterSyncer
 	writeSyncer := getLogWriter(
 		cfg.Filename,

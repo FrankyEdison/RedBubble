@@ -1,7 +1,7 @@
 package redis
 
 import (
-	"RedBubble/settings"
+	"RedBubble/setting"
 	"context"
 	"fmt"
 	"github.com/go-redis/redis/v9"
@@ -11,7 +11,7 @@ import (
 // 声明一个全局的rdb变量，是private的
 var rdb *redis.Client
 
-func Init(cfg *settings.RedisConfig) (err error) {
+func Init(cfg *setting.RedisConfig) (err error) {
 	rdb = redis.NewClient(&redis.Options{
 		//连的虚拟机的redis7
 		Addr:     fmt.Sprintf("%s:%d", cfg.Host, cfg.Port),
