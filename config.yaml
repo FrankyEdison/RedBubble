@@ -1,0 +1,31 @@
+name: "RedBubble"
+mode: "dev"
+port: 8081
+version: "v1.0.0"
+
+mysql:
+  host: "127.0.0.1"
+  port: 3306
+  username: "root"
+  password: "root"
+  db_name: "red_bubble"
+  max_idle_conns: 10 #空闲连接池中连接的最大数量
+  max_open_conns: 20 #打开数据库连接的最大数量
+
+redis:
+  host: "192.168.160.121"
+  port: 6379
+  db: 0
+  pool_size: 20
+  password: ""
+
+log:
+  level: "INFO" # 日志级别
+  filename: "./logger/RedBubble.log" # 日志文件的位置和名字
+  max_size: 10 # 在进行切割之前，日志文件的最大大小（以MB为单位）
+  max_age: 30 # 保留旧文件的最大天数
+  max_backups: 7 # 保留旧文件的最大个数
+
+snowflake:
+  start_time: "2022-07-24"
+  machine_id: 1
