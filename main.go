@@ -25,7 +25,7 @@ func main() {
 	}
 
 	//2、初始化日志
-	if err := logger.Init(setting.Conf.LogConfig); err != nil {
+	if err := logger.Init(setting.Conf.LogConfig, setting.Conf.Mode); err != nil {
 		fmt.Printf("初始化日志失败, err:%v\n", err)
 		return
 	}

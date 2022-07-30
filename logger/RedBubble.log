@@ -12,3 +12,34 @@
 {"level":"INFO","time":"2022-07-29T00:48:50.044+0800","caller":"logger/logger.go:83","msg":"/signUp","status":200,"method":"POST","path":"/signUp","query":"","ip":"::1","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36","errors":"","cost":0.0010053}
 {"level":"INFO","time":"2022-07-29T00:53:18.875+0800","caller":"RedBubble/main.go:86","msg":"关闭服务器 ..."}
 {"level":"INFO","time":"2022-07-29T00:53:18.888+0800","caller":"RedBubble/main.go:95","msg":"服务器成功退出"}
+{"level":"INFO","time":"2022-07-30T17:43:29.845+0800","caller":"RedBubble/main.go:33","msg":"初始化日志成功"}
+{"level":"INFO","time":"2022-07-30T17:43:34.035+0800","caller":"RedBubble/main.go:86","msg":"关闭服务器 ..."}
+{"level":"INFO","time":"2022-07-30T17:43:34.039+0800","caller":"RedBubble/main.go:95","msg":"服务器成功退出"}
+{"level":"INFO","time":"2022-07-30T17:45:27.047+0800","caller":"RedBubble/main.go:33","msg":"初始化日志成功"}
+{"level":"ERROR","time":"2022-07-30T17:45:58.869+0800","caller":"controller/user.go:20","msg":"用户注册含非法参数","error":"invalid character '\"' after object key:value pair"}
+{"level":"INFO","time":"2022-07-30T17:45:58.869+0800","caller":"logger/logger.go:83","msg":"/signUp","status":200,"method":"POST","path":"/signUp","query":"","ip":"::1","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36","errors":"","cost":0.0005123}
+{"level":"ERROR","time":"2022-07-30T17:46:12.454+0800","caller":"controller/user.go:20","msg":"用户注册含非法参数","error":"Key: 'ParamSignUp.re_password' Error:Field validation for 're_password' failed on the 'eqfield' tag\nKey: 'ParamSignUp.re_password' Error:Field validation for 're_password' failed on the 'eqfield' tag"}
+{"level":"INFO","time":"2022-07-30T17:46:12.454+0800","caller":"logger/logger.go:83","msg":"/signUp","status":200,"method":"POST","path":"/signUp","query":"","ip":"::1","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36","errors":"","cost":0.0009695}
+{"level":"ERROR","time":"2022-07-30T17:47:08.710+0800","caller":"controller/user.go:34","msg":"注册失败,err:","error":"record not found"}
+{"level":"INFO","time":"2022-07-30T17:47:08.711+0800","caller":"logger/logger.go:83","msg":"/signUp","status":200,"method":"POST","path":"/signUp","query":"","ip":"::1","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36","errors":"","cost":0.0051864}
+{"level":"INFO","time":"2022-07-30T17:56:40.336+0800","caller":"RedBubble/main.go:86","msg":"关闭服务器 ..."}
+{"level":"INFO","time":"2022-07-30T17:56:40.351+0800","caller":"RedBubble/main.go:95","msg":"服务器成功退出"}
+{"level":"INFO","time":"2022-07-30T18:01:55.087+0800","caller":"RedBubble/main.go:33","msg":"初始化日志成功"}
+{"level":"INFO","time":"2022-07-30T18:02:03.571+0800","caller":"logger/logger.go:83","msg":"/signUp","status":200,"method":"POST","path":"/signUp","query":"","ip":"::1","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36","errors":"","cost":0.0097556}
+{"level":"ERROR","time":"2022-07-30T18:06:48.113+0800","caller":"controller/user.go:34","msg":"注册失败,err:","error":"用户已存在"}
+{"level":"INFO","time":"2022-07-30T18:06:48.114+0800","caller":"logger/logger.go:83","msg":"/signUp","status":200,"method":"POST","path":"/signUp","query":"","ip":"::1","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36","errors":"","cost":0.0018502}
+{"level":"ERROR","time":"2022-07-30T18:08:16.579+0800","caller":"controller/user.go:34","msg":"注册失败,err:","error":"用户已存在"}
+{"level":"INFO","time":"2022-07-30T18:08:16.579+0800","caller":"logger/logger.go:83","msg":"/signUp","status":200,"method":"POST","path":"/signUp","query":"","ip":"::1","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36","errors":"","cost":0.0062396}
+{"level":"INFO","time":"2022-07-30T18:08:26.252+0800","caller":"RedBubble/main.go:86","msg":"关闭服务器 ..."}
+{"level":"INFO","time":"2022-07-30T18:08:26.258+0800","caller":"RedBubble/main.go:95","msg":"服务器成功退出"}
+{"level":"INFO","time":"2022-07-30T22:50:35.365+0800","caller":"RedBubble/main.go:33","msg":"初始化日志成功"}
+{"level":"ERROR","time":"2022-07-30T23:03:35.532+0800","caller":"controller/user.go:34","msg":"注册失败,err:","error":"用户已存在"}
+{"level":"INFO","time":"2022-07-30T23:03:35.532+0800","caller":"logger/logger.go:97","msg":"/signUp","status":200,"method":"POST","path":"/signUp","query":"","ip":"::1","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36","errors":"","cost":0.0032312}
+{"level":"ERROR","time":"2022-07-30T23:04:30.867+0800","caller":"controller/user.go:20","msg":"用户注册含非法参数","error":"invalid character '}' looking for beginning of object key string"}
+{"level":"INFO","time":"2022-07-30T23:04:30.867+0800","caller":"logger/logger.go:97","msg":"/signUp","status":200,"method":"POST","path":"/signUp","query":"","ip":"::1","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36","errors":"","cost":0.0004807}
+{"level":"ERROR","time":"2022-07-30T23:04:45.178+0800","caller":"controller/user.go:20","msg":"用户注册含非法参数","error":"Key: 'ParamSignUp.re_password' Error:Field validation for 're_password' failed on the 'required' tag\nKey: 'ParamSignUp.re_password' Error:Field validation for 're_password' failed on the 'eqfield' tag"}
+{"level":"INFO","time":"2022-07-30T23:04:45.178+0800","caller":"logger/logger.go:97","msg":"/signUp","status":200,"method":"POST","path":"/signUp","query":"","ip":"::1","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36","errors":"","cost":0.0010622}
+{"level":"ERROR","time":"2022-07-30T23:05:11.002+0800","caller":"controller/user.go:34","msg":"注册失败,err:","error":"用户已存在"}
+{"level":"INFO","time":"2022-07-30T23:05:11.003+0800","caller":"logger/logger.go:97","msg":"/signUp","status":200,"method":"POST","path":"/signUp","query":"","ip":"::1","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36","errors":"","cost":0.0012871}
+{"level":"INFO","time":"2022-07-30T23:05:43.490+0800","caller":"RedBubble/main.go:86","msg":"关闭服务器 ..."}
+{"level":"INFO","time":"2022-07-30T23:05:43.506+0800","caller":"RedBubble/main.go:95","msg":"服务器成功退出"}

@@ -1,5 +1,5 @@
 name: "RedBubble"
-mode: "dev"
+mode: "dev" #当是dev模式时，日志不仅会保存到logger/RedBubble.log文件中，还会打印在终端
 port: 8081
 version: "v1.0.0"
 
