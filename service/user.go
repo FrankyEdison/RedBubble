@@ -9,7 +9,7 @@ import (
 // 1、用户注册
 func SignUp(p *models.ParamSignUp) (err error) {
 	// 1.判断用户存不存在，根据唯一用户名来判断
-	if err := mysql.CheckUsernameIsExist(p.Username); err != nil {
+	if err = mysql.CheckUsernameIsExist(p.Username); err != nil {
 		return err
 	}
 	// 2.生成用户ID

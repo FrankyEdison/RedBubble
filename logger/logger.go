@@ -23,7 +23,7 @@ import (
 */
 
 //1、初始化Logger
-func Init(cfg *setting.LogConfig) (err error) {
+func Init(cfg *setting.LogConfig, mode string) (err error) {
 	//1.1 设置WriterSyncer
 	writeSyncer := getLogWriter(
 		cfg.Filename,
@@ -38,8 +38,22 @@ func Init(cfg *setting.LogConfig) (err error) {
 	if err != nil {
 		return
 	}
+
 	//1.3 创建自定义core
-	core := zapcore.NewCore(encoder, writeSyncer, l)
+	var core zapcore.Core
+	if mode == "dev" {
+		// 若是"dev"开发模式
+		consoleEncoder := zapcore.NewConsoleEncoder(zap.NewDevelopmentEncoderConfig())
+		core = zapcore.NewTee(
+			zapcore.NewCore(encoder, writeSyncer, l),                                     //日志保存到logger/RedBubble.log文件中
+			zapcore.NewCore(consoleEncoder, zapcore.Lock(os.Stdout), zapcore.DebugLevel), //日志在终端输出
+		)
+	} else {
+		core = zapcore.NewCore(encoder, writeSyncer, l)
+	}
+
+	//1.3 创建自定义core
+	//core := zapcore.NewCore(encoder, writeSyncer, l)
 	//1.4 创建自定义logger
 	lg := zap.New(core, zap.AddCaller()) //参数zap.AddCaller()的作用是在日志中记录go程序的哪一行调用本日志
 	//1.5 替换zap包中全局的logger实例，后续在其他包中只需使用zap.L()调用即可
