@@ -7,8 +7,8 @@ type ParamSignUp struct {
 	RePassword string `json:"re_password" binding:"required,eqfield=Password"` //binding:"eqfield=Password"用于判断两个字段的值是否相同
 }
 
-// ParamLogin 登录请求参数
-type ParamLogin struct {
+// ParamSignIn 登录请求参数
+type ParamSignIn struct {
 	Username string `json:"username" binding:"required"`
 	Password string `json:"password" binding:"required"`
 }
