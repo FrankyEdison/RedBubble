@@ -3,7 +3,10 @@ package middleware
 import (
 	"RedBubble/controller"
 	"RedBubble/utils/jwt"
+	"fmt"
 	"github.com/gin-gonic/gin"
+	"math/big"
+	"strconv"
 	"strings"
 )
 
@@ -15,6 +18,7 @@ func JWTAuthMiddleware() func(c *gin.Context) {
 		// Authorization: Bearer xxxxxxx.xxx.xxx  / X-TOKEN: xxx.xxx.xx
 		authHeader := c.Request.Header.Get("Authorization")
 		//判断是否已携带Authorization
+		fmt.Printf("authHeaer:%s\n", authHeader)
 		if authHeader == "" {
 			controller.ResponseError(c, controller.CodeNeedLogin)
 			c.Abort()
@@ -28,8 +32,27 @@ func JWTAuthMiddleware() func(c *gin.Context) {
 			c.Abort()
 			return
 		}
-		// 获取parts[1]即jwt字符串，并解析它
+		// 获取parts[1]即jwt字符串，并解析它，须转换数据类型
 		claims, err := jwt.ParseToken(parts[1])
+
+		//解析出来的claims["user_id"]是float64的科学计数法类型，我们需要转换成int64类型
+		userIdTest := claims["user_id"].(float64)
+		//先将float64的科学计数法类型转成string类型
+		newNum := big.NewRat(1, 1)
+		newNum.SetFloat64(userIdTest)
+		//再将string类型转成int64类型
+		parseInt, _ := strconv.ParseInt(newNum.FloatString(0), 10, 64) //10进制，64位精度
+		claims["user_id"] = parseInt
+
+		//解析出来的claims["exp"]是float64的科学计数法类型，我们需要转换成int64类型
+		expTest := claims["exp"].(float64)
+		//先将float64的科学计数法类型转成string类型
+		newNum.SetFloat64(expTest)
+		//再将string类型转成int64类型
+		parseInt, _ = strconv.ParseInt(newNum.FloatString(0), 10, 64) //10进制，64位精度
+		claims["exp"] = parseInt
+
+		fmt.Printf("claims:%v\n", claims)
 		if err != nil {
 			controller.ResponseError(c, controller.CodeInvalidToken)
 			c.Abort()

@@ -6,7 +6,6 @@ import (
 	"RedBubble/service"
 	"RedBubble/utils/validator_"
 	"errors"
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
 	"go.uber.org/zap"
@@ -85,7 +84,6 @@ func SignInHandler(c *gin.Context) {
 func TestAuthHandler(c *gin.Context) {
 	//1、从gin.context中获取jwt中存放的userID
 	userID, err := getCurrentUser(c)
-	fmt.Println(userID)
 	//2、响应
 	if err != nil {
 		ResponseError(c, CodeNeedLogin)
