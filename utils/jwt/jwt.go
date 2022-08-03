@@ -28,7 +28,7 @@ func GenerateToken(userID int64, username string) (string, error) {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
 		"user_id":  userID,                                     //用户id
 		"username": username,                                   //用户名
-		"exp":      time.Now().Add(TokenExpireDuration).Unix(), //过期时间
+		"exp":      time.Now().Add(TokenExpireDuration).Unix(), //过期时间，Unix 时间戳是从1970年1月1日开始所经过的秒数，不考虑闰秒
 		"iss":      "RedBubble",                                //签发人
 	})
 
