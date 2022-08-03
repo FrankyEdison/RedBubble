@@ -70,3 +70,18 @@
 {"level":"INFO","time":"2022-07-31T17:31:56.943+0800","caller":"logger/logger.go:97","msg":"/signUp","status":200,"method":"POST","path":"/signUp","query":"","ip":"::1","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36","errors":"","cost":0.0012212}
 {"level":"INFO","time":"2022-07-31T17:32:06.676+0800","caller":"RedBubble/main.go:86","msg":"关闭服务器 ..."}
 {"level":"INFO","time":"2022-07-31T17:32:06.680+0800","caller":"RedBubble/main.go:95","msg":"服务器成功退出"}
+{"level":"INFO","time":"2022-08-02T17:19:53.824+0800","caller":"RedBubble/main.go:33","msg":"初始化日志成功"}
+{"level":"INFO","time":"2022-08-02T17:20:22.322+0800","caller":"logger/logger.go:97","msg":"/signIn","status":200,"method":"POST","path":"/signIn","query":"","ip":"::1","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36","errors":"","cost":0.0024292}
+{"level":"INFO","time":"2022-08-02T17:32:48.073+0800","caller":"RedBubble/main.go:86","msg":"关闭服务器 ..."}
+{"level":"INFO","time":"2022-08-02T17:32:48.088+0800","caller":"RedBubble/main.go:95","msg":"服务器成功退出"}
+{"level":"INFO","time":"2022-08-03T15:11:40.279+0800","caller":"RedBubble/main.go:33","msg":"初始化日志成功"}
+{"level":"INFO","time":"2022-08-03T15:11:55.059+0800","caller":"logger/logger.go:97","msg":"/signIn","status":200,"method":"POST","path":"/signIn","query":"","ip":"::1","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36","errors":"","cost":0.0028533}
+{"level":"INFO","time":"2022-08-03T15:13:40.182+0800","caller":"logger/logger.go:97","msg":"/test","status":200,"method":"GET","path":"/test","query":"","ip":"::1","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36","errors":"","cost":0}
+{"level":"INFO","time":"2022-08-03T15:14:14.440+0800","caller":"RedBubble/main.go:86","msg":"关闭服务器 ..."}
+{"level":"INFO","time":"2022-08-03T15:14:14.456+0800","caller":"RedBubble/main.go:95","msg":"服务器成功退出"}
+{"level":"INFO","time":"2022-08-03T15:14:16.417+0800","caller":"RedBubble/main.go:33","msg":"初始化日志成功"}
+{"level":"INFO","time":"2022-08-03T15:14:18.711+0800","caller":"logger/logger.go:97","msg":"/test","status":200,"method":"GET","path":"/test","query":"","ip":"::1","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36","errors":"","cost":0.0005241}
+{"level":"INFO","time":"2022-08-03T15:14:32.433+0800","caller":"logger/logger.go:97","msg":"/test","status":200,"method":"GET","path":"/test","query":"","ip":"::1","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36","errors":"","cost":0.0005499}
+{"level":"INFO","time":"2022-08-03T15:15:29.612+0800","caller":"logger/logger.go:97","msg":"/test","status":200,"method":"GET","path":"/test","query":"","ip":"::1","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36","errors":"","cost":0.0008737}
+{"level":"INFO","time":"2022-08-03T15:16:38.942+0800","caller":"RedBubble/main.go:86","msg":"关闭服务器 ..."}
+{"level":"INFO","time":"2022-08-03T15:16:38.942+0800","caller":"RedBubble/main.go:95","msg":"服务器成功退出"}

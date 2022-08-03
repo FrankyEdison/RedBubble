@@ -1,5 +1,6 @@
 package controller
 
+//通用响应码
 type ResCode int64
 
 const (
