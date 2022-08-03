@@ -12,6 +12,7 @@ import (
 	"data": {},    // 数据
 }
 */
+//通用响应对象
 
 type ResponseData struct {
 	Code ResCode     `json:"code"`

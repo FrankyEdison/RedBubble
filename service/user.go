@@ -3,6 +3,7 @@ package service
 import (
 	"RedBubble/dao/mysql"
 	"RedBubble/models"
+	"RedBubble/utils/jwt"
 	"RedBubble/utils/snowflake"
 	"crypto/md5"
 	"encoding/hex"
@@ -49,19 +50,19 @@ func SignIn(p *models.ParamSignIn) (token string, err error) {
 		Username: p.Username,
 		Password: p.Password,
 	}
-	// 根据用户名获取用户
+	// 1、根据用户名获取用户
 	databaseUser, err := mysql.GetUserByUsername(requestUser.Username)
 	if err != nil {
 		// 用户不存在
 		return "", err
 	}
+	// 2、判断用户输入的密码是否正确
 	requestSecretPassword := encryptPassword(requestUser.Password)
 	if requestSecretPassword != databaseUser.Password {
 		// 用户名或密码错误
 		return "", mysql.ErrorInvalidPassword
 	}
 
-	// 登录成功，返回JWT
-	//return jwt.GenToken(user.UserID, user.Username)
-	return "", nil
+	// 3、登录成功，返回JWT
+	return jwt.GenerateToken(databaseUser.UserId, databaseUser.Username)
 }
