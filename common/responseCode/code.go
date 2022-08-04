@@ -1,4 +1,4 @@
-package controller
+package responseCode
 
 //通用响应码
 type ResCode int64

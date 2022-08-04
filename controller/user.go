@@ -1,6 +1,9 @@
 package controller
 
 import (
+	"RedBubble/common/parseUser"
+	"RedBubble/common/response"
+	"RedBubble/common/responseCode"
 	"RedBubble/dao/mysql"
 	"RedBubble/models"
 	"RedBubble/service"
@@ -20,11 +23,11 @@ func SignUpHandler(c *gin.Context) {
 		errs, ok := err.(validator.ValidationErrors) // 判断err是不是validator.ValidationErrors 类型
 		if !ok {
 			//若不是validator的错误类型，直接返回就行
-			ResponseError(c, CodeInvalidParam)
+			response.Error(c, responseCode.CodeInvalidParam)
 			return
 		}
 		//若是validator的错误类型，翻译一下错误再响应给前端
-		ResponseErrorWithMsg(c, CodeInvalidParam, validator_.RemoveTopStruct(errs.Translate(validator_.Trans)))
+		response.ErrorWithMsg(c, responseCode.CodeInvalidParam, validator_.RemoveTopStruct(errs.Translate(validator_.Trans)))
 		return
 	}
 	// 2. 业务处理
@@ -32,15 +35,15 @@ func SignUpHandler(c *gin.Context) {
 		zap.L().Error("注册失败,err:", zap.Error(err))
 		// 用户已存在
 		if errors.Is(err, mysql.ErrorUserExist) {
-			ResponseError(c, CodeUserExist)
+			response.Error(c, responseCode.CodeUserExist)
 			return
 		}
 		// 服务器繁忙
-		ResponseError(c, CodeServerBusy)
+		response.Error(c, responseCode.CodeServerBusy)
 		return
 	}
 	// 3. 注册成功，返回响应
-	ResponseSuccess(c, nil)
+	response.Success(c, nil)
 }
 
 // 2、用户登录
@@ -52,11 +55,11 @@ func SignInHandler(c *gin.Context) {
 		errs, ok := err.(validator.ValidationErrors) // 判断err是不是validator.ValidationErrors 类型
 		if !ok {
 			//若不是validator的错误类型，随便返回就行
-			ResponseError(c, CodeInvalidParam)
+			response.Error(c, responseCode.CodeInvalidParam)
 			return
 		}
 		//若是validator的错误类型，翻译一下错误再响应给前端
-		ResponseErrorWithMsg(c, CodeInvalidParam, validator_.RemoveTopStruct(errs.Translate(validator_.Trans)))
+		response.ErrorWithMsg(c, responseCode.CodeInvalidParam, validator_.RemoveTopStruct(errs.Translate(validator_.Trans)))
 		return
 	}
 	// 2. 业务处理
@@ -65,29 +68,30 @@ func SignInHandler(c *gin.Context) {
 		zap.L().Error("登录失败，err：", zap.String("username", p.Username), zap.Error(err))
 		// 用户不存在
 		if errors.Is(err, mysql.ErrorUserNotExist) {
-			ResponseError(c, CodeUserNotExist)
+			response.Error(c, responseCode.CodeUserNotExist)
 			return
 		}
 		// 用户名或密码错误
 		if errors.Is(err, mysql.ErrorInvalidPassword) {
-			ResponseError(c, CodeInvalidPassword)
+			response.Error(c, responseCode.CodeInvalidPassword)
 			return
 		}
 		// 服务器繁忙
-		ResponseError(c, CodeServerBusy)
+		response.Error(c, responseCode.CodeServerBusy)
 		return
 	}
 	// 3. 登录成功，返回响应
-	ResponseSuccess(c, token)
+	response.Success(c, token)
 }
 
+// 3、测试jwt鉴权
 func TestAuthHandler(c *gin.Context) {
 	//1、从gin.context中获取jwt中存放的userID
-	userID, err := getCurrentUser(c)
+	userID, err := parseUser.GetCurrentUser(c)
 	//2、响应
 	if err != nil {
-		ResponseError(c, CodeNeedLogin)
+		response.Error(c, responseCode.CodeNeedLogin)
 		return
 	}
-	ResponseSuccess(c, userID)
+	response.Success(c, userID)
 }

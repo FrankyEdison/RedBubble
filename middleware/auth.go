@@ -1,7 +1,9 @@
 package middleware
 
 import (
-	"RedBubble/controller"
+	"RedBubble/common/parseUser"
+	"RedBubble/common/response"
+	"RedBubble/common/responseCode"
 	"RedBubble/utils/jwt"
 	"fmt"
 	"github.com/gin-gonic/gin"
@@ -9,6 +11,11 @@ import (
 	"strconv"
 	"strings"
 )
+
+/**
+本中间件的作用的：从请求头的Authorization里获取jwt，若没有携带jwt请求或者jwt不合法，则响应“需要登录”；若jwt合法则解析出当前登录用户的ID
+               并将userId保存到c *gin.Context的上下文中，后续的处理函数能获得该值
+*/
 
 // JWTAuthMiddleware 基于JWT的认证中间件
 func JWTAuthMiddleware() func(c *gin.Context) {
@@ -20,7 +27,7 @@ func JWTAuthMiddleware() func(c *gin.Context) {
 		//判断是否已携带Authorization
 		fmt.Printf("authHeaer:%s\n", authHeader)
 		if authHeader == "" {
-			controller.ResponseError(c, controller.CodeNeedLogin)
+			response.Error(c, responseCode.CodeNeedLogin)
 			c.Abort()
 			return
 		}
@@ -28,7 +35,7 @@ func JWTAuthMiddleware() func(c *gin.Context) {
 		parts := strings.SplitN(authHeader, " ", 2)
 		//判断Authorization格式是否准确
 		if !(len(parts) == 2 && parts[0] == "Bearer") {
-			controller.ResponseError(c, controller.CodeInvalidToken)
+			response.Error(c, responseCode.CodeInvalidToken)
 			c.Abort()
 			return
 		}
@@ -54,12 +61,12 @@ func JWTAuthMiddleware() func(c *gin.Context) {
 
 		fmt.Printf("claims:%v\n", claims)
 		if err != nil {
-			controller.ResponseError(c, controller.CodeInvalidToken)
+			response.Error(c, responseCode.CodeInvalidToken)
 			c.Abort()
 			return
 		}
 		// 将当前请求的userID信息保存到请求的上下文c上
-		c.Set(controller.CtxUserIDKey, claims["user_id"])
+		c.Set(parseUser.CtxUserIDKey, claims["user_id"])
 
 		c.Next() // 后续的处理请求的函数中 可以用过c.Get(CtxUserIDKey) 来获取当前请求的用户信息
 	}
