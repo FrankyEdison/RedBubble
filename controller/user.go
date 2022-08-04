@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"RedBubble/common/parseUser"
 	"RedBubble/dao/mysql"
 	"RedBubble/models"
 	"RedBubble/service"
@@ -81,9 +82,10 @@ func SignInHandler(c *gin.Context) {
 	ResponseSuccess(c, token)
 }
 
+// 3、测试jwt鉴权
 func TestAuthHandler(c *gin.Context) {
 	//1、从gin.context中获取jwt中存放的userID
-	userID, err := getCurrentUser(c)
+	userID, err := parseUser.GetCurrentUser(c)
 	//2、响应
 	if err != nil {
 		ResponseError(c, CodeNeedLogin)

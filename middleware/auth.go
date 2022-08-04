@@ -1,6 +1,7 @@
 package middleware
 
 import (
+	"RedBubble/common/parseUser"
 	"RedBubble/controller"
 	"RedBubble/utils/jwt"
 	"fmt"
@@ -9,6 +10,11 @@ import (
 	"strconv"
 	"strings"
 )
+
+/**
+本中间件的作用的：从请求头的Authorization里获取jwt，若没有携带jwt请求或者jwt不合法，则响应“需要登录”；若jwt合法则解析出当前登录用户的ID
+               并将userId保存到c *gin.Context的上下文中，后续的处理函数能获得该值
+*/
 
 // JWTAuthMiddleware 基于JWT的认证中间件
 func JWTAuthMiddleware() func(c *gin.Context) {
@@ -59,7 +65,7 @@ func JWTAuthMiddleware() func(c *gin.Context) {
 			return
 		}
 		// 将当前请求的userID信息保存到请求的上下文c上
-		c.Set(controller.CtxUserIDKey, claims["user_id"])
+		c.Set(parseUser.CtxUserIDKey, claims["user_id"])
 
 		c.Next() // 后续的处理请求的函数中 可以用过c.Get(CtxUserIDKey) 来获取当前请求的用户信息
 	}
