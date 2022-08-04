@@ -2,7 +2,8 @@ package middleware
 
 import (
 	"RedBubble/common/parseUser"
-	"RedBubble/controller"
+	"RedBubble/common/response"
+	"RedBubble/common/responseCode"
 	"RedBubble/utils/jwt"
 	"fmt"
 	"github.com/gin-gonic/gin"
@@ -26,7 +27,7 @@ func JWTAuthMiddleware() func(c *gin.Context) {
 		//判断是否已携带Authorization
 		fmt.Printf("authHeaer:%s\n", authHeader)
 		if authHeader == "" {
-			controller.ResponseError(c, controller.CodeNeedLogin)
+			response.Error(c, responseCode.CodeNeedLogin)
 			c.Abort()
 			return
 		}
@@ -34,7 +35,7 @@ func JWTAuthMiddleware() func(c *gin.Context) {
 		parts := strings.SplitN(authHeader, " ", 2)
 		//判断Authorization格式是否准确
 		if !(len(parts) == 2 && parts[0] == "Bearer") {
-			controller.ResponseError(c, controller.CodeInvalidToken)
+			response.Error(c, responseCode.CodeInvalidToken)
 			c.Abort()
 			return
 		}
@@ -60,7 +61,7 @@ func JWTAuthMiddleware() func(c *gin.Context) {
 
 		fmt.Printf("claims:%v\n", claims)
 		if err != nil {
-			controller.ResponseError(c, controller.CodeInvalidToken)
+			response.Error(c, responseCode.CodeInvalidToken)
 			c.Abort()
 			return
 		}

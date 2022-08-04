@@ -1,6 +1,7 @@
-package controller
+package response
 
 import (
+	"RedBubble/common/responseCode"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -15,12 +16,12 @@ import (
 //通用响应对象
 
 type ResponseData struct {
-	Code ResCode     `json:"code"`
-	Msg  interface{} `json:"msg"`
-	Data interface{} `json:"data"`
+	Code responseCode.ResCode `json:"code"`
+	Msg  interface{}          `json:"msg"`
+	Data interface{}          `json:"data"`
 }
 
-func ResponseError(c *gin.Context, code ResCode) {
+func Error(c *gin.Context, code responseCode.ResCode) {
 	c.JSON(http.StatusOK, &ResponseData{
 		Code: code,
 		Msg:  code.Msg(),
@@ -28,7 +29,7 @@ func ResponseError(c *gin.Context, code ResCode) {
 	})
 }
 
-func ResponseErrorWithMsg(c *gin.Context, code ResCode, msg interface{}) {
+func ErrorWithMsg(c *gin.Context, code responseCode.ResCode, msg interface{}) {
 	c.JSON(http.StatusOK, &ResponseData{
 		Code: code,
 		Msg:  msg,
@@ -36,10 +37,10 @@ func ResponseErrorWithMsg(c *gin.Context, code ResCode, msg interface{}) {
 	})
 }
 
-func ResponseSuccess(c *gin.Context, data interface{}) {
+func Success(c *gin.Context, data interface{}) {
 	c.JSON(http.StatusOK, &ResponseData{
-		Code: CodeSuccess,
-		Msg:  CodeSuccess.Msg(),
+		Code: responseCode.CodeSuccess,
+		Msg:  responseCode.CodeSuccess.Msg(),
 		Data: data,
 	})
 }
