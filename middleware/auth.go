@@ -41,6 +41,12 @@ func JWTAuthMiddleware() func(c *gin.Context) {
 		}
 		// 获取parts[1]即jwt字符串，并解析它，须转换数据类型
 		claims, err := jwt.ParseToken(parts[1])
+		//令牌过期会在这里判断出来，并赋值到err中
+		if err != nil {
+			response.ErrorWithMsg(c, responseCode.CodeInvalidToken, err.Error())
+			c.Abort()
+			return
+		}
 
 		//解析出来的claims["user_id"]是float64的科学计数法类型，我们需要转换成int64类型
 		userIdTest := claims["user_id"].(float64)
@@ -60,11 +66,7 @@ func JWTAuthMiddleware() func(c *gin.Context) {
 		claims["exp"] = parseInt
 
 		fmt.Printf("claims:%v\n", claims)
-		if err != nil {
-			response.Error(c, responseCode.CodeInvalidToken)
-			c.Abort()
-			return
-		}
+
 		// 将当前请求的userID信息保存到请求的上下文c上
 		c.Set(parseUser.CtxUserIDKey, claims["user_id"])
 
