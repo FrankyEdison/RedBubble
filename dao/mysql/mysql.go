@@ -71,11 +71,13 @@ func Init(cfg *setting.MySQLConfig) (err error) {
 	return
 }
 
-//使用gorm而不是sql文件创建数据库表
+//使用gorm而不是sql文件创建数据库表，在models中设置字段的规则如非空、添加索引，在这个方法里设置表的规则如字符集
 func CreateSQLTable() (err error) {
 
 	//user表
 	err = mdb.Set("gorm:table_options", "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 comment '用户表'").Migrator().CreateTable(&models.User{}) // 设置ENGINE=InnoDB，字符集=utf8mb4
+	//category表
+	err = mdb.Set("gorm:table_options", "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 comment '帖子分类表'").Migrator().CreateTable(&models.Category{}) // 设置ENGINE=InnoDB，字符集=utf8mb4
 
 	return
 }
