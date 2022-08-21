@@ -25,13 +25,15 @@ func Setup() *gin.Engine {
 		//获取所有帖子分类
 		categoryGroup.GET("/getAllCategory", controller.GetAllCategoryHandler)
 		//获取某个分类详情
-		categoryGroup.GET("/getCategoryById/:id", controller.GetCategoryByIdHandler)
+		categoryGroup.GET("/getCategoryById/:cateId", controller.GetCategoryByIdHandler)
 	}
 
 	postGroup := apiGroup.Group("/post") //帖子路由组
 	{
 		//发表帖子
 		postGroup.POST("/addPost", middleware.JWTAuthMiddleware(), controller.AddPostHandle)
+		//获取帖子详情
+		postGroup.GET("/:postId", controller.GetPostDetailHandle)
 	}
 
 	//测试使用，须登录后才能请求该路由，已注册中间件JWTAuthMiddleware()

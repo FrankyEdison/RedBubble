@@ -30,7 +30,7 @@ func GetCategoryById(id int64) (categoryDetail *models.Category, err error) {
 	// SELECT gorm_id, category_name, introduction, gorm_created_at FROM category WHERE id = id ORDER BY id LIMIT 1;
 	result := mdb.Select("gorm_id", "category_name", "introduction", "gorm_created_at").Where("gorm_id = ?", id).First(&categoryDetail)
 	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
-		//没有分类
+		//无效的分类id
 		err = ErrorInvalidId
 	} else {
 		//获取成功

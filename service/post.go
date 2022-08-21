@@ -15,3 +15,8 @@ func AddPost(post *models.Post) (err error) {
 
 	//err = redis.CreatePost(p.ID, p.CommunityID)
 }
+
+//获取帖子详情
+func GetPostDetailById(postId int64) (postDetail *models.Post, err error) {
+	return mysql.GetPostDetailById(postId)
+}

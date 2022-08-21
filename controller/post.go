@@ -8,6 +8,7 @@ import (
 	"RedBubble/service"
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
+	"strconv"
 )
 
 //发布帖子
@@ -43,4 +44,24 @@ func AddPostHandle(c *gin.Context) {
 
 	// 3. 返回响应
 	response.Success(c, nil)
+}
+
+//获取帖子详情
+func GetPostDetailHandle(c *gin.Context) {
+	// 1. 获取参数（在请求路径里的帖子id）
+	idStr := c.Param("postId")
+	id, err := strconv.ParseInt(idStr, 10, 64) //10进制，64位
+	if err != nil {
+		response.Error(c, responseCode.CodeInvalidParam)
+		return
+	}
+
+	postDetail, err := service.GetPostDetailById(id)
+	if err != nil {
+		zap.L().Error("获取帖子失败", zap.Error(err))
+		response.Error(c, responseCode.CodeServerBusy)
+		return
+	}
+
+	response.Success(c, postDetail)
 }
