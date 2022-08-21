@@ -12,3 +12,10 @@ type ParamSignIn struct {
 	Username string `json:"username" binding:"required"`
 	Password string `json:"password" binding:"required"`
 }
+
+// 发布帖子参数
+type ParamAddPost struct {
+	CommunityID int64  `json:"community_id" binding:"required"`
+	Title       string `json:"title" binding:"required"`
+	Content     string `json:"content" binding:"required"`
+}
