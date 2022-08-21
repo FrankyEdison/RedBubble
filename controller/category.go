@@ -23,7 +23,7 @@ func GetAllCategoryHandler(c *gin.Context) {
 }
 
 //获取某个分类详情
-func GetCategoryById(c *gin.Context) {
+func GetCategoryByIdHandler(c *gin.Context) {
 	// 1. 获取参数（在请求路径里的分类id）
 	idStr := c.Param("id")
 	id, err := strconv.ParseInt(idStr, 10, 64) //10进制，64位

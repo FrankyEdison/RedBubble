@@ -258,3 +258,22 @@
 {"level":"INFO","time":"2022-08-13T01:34:30.099+0800","caller":"logger/logger.go:97","msg":"/api/category/getCategoryById/2","status":200,"method":"GET","path":"/api/category/getCategoryById/2","query":"","ip":"::1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0.0004497}
 {"level":"INFO","time":"2022-08-13T01:34:48.289+0800","caller":"RedBubble/main.go:86","msg":"关闭服务器 ..."}
 {"level":"INFO","time":"2022-08-13T01:34:48.289+0800","caller":"RedBubble/main.go:95","msg":"服务器成功退出"}
+{"level":"INFO","time":"2022-08-20T12:50:24.170+0800","caller":"RedBubble/main.go:33","msg":"初始化日志成功"}
+{"level":"INFO","time":"2022-08-20T12:51:07.136+0800","caller":"RedBubble/main.go:86","msg":"关闭服务器 ..."}
+{"level":"INFO","time":"2022-08-20T12:51:07.149+0800","caller":"RedBubble/main.go:95","msg":"服务器成功退出"}
+{"level":"INFO","time":"2022-08-20T15:11:22.706+0800","caller":"RedBubble/main.go:33","msg":"初始化日志成功"}
+{"level":"INFO","time":"2022-08-20T15:11:44.069+0800","caller":"RedBubble/main.go:86","msg":"关闭服务器 ..."}
+{"level":"INFO","time":"2022-08-20T15:11:44.070+0800","caller":"RedBubble/main.go:95","msg":"服务器成功退出"}
+{"level":"INFO","time":"2022-08-21T02:36:05.049+0800","caller":"RedBubble/main.go:33","msg":"初始化日志成功"}
+{"level":"INFO","time":"2022-08-21T02:36:12.415+0800","caller":"logger/logger.go:97","msg":"/api/post/addPost","status":200,"method":"POST","path":"/api/post/addPost","query":"","ip":"::1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0.0002341}
+{"level":"INFO","time":"2022-08-21T02:36:18.342+0800","caller":"logger/logger.go:97","msg":"/api/user/signIn","status":200,"method":"POST","path":"/api/user/signIn","query":"","ip":"::1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0.0041339}
+{"level":"INFO","time":"2022-08-21T02:36:39.908+0800","caller":"logger/logger.go:97","msg":"/api/post/addPost","status":200,"method":"POST","path":"/api/post/addPost","query":"","ip":"::1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0.000351}
+{"level":"INFO","time":"2022-08-21T02:37:20.285+0800","caller":"logger/logger.go:97","msg":"/api/user/signIn","status":200,"method":"POST","path":"/api/user/signIn","query":"","ip":"::1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0.0005582}
+{"level":"INFO","time":"2022-08-21T02:37:35.719+0800","caller":"logger/logger.go:97","msg":"/api/post/addPost","status":200,"method":"POST","path":"/api/post/addPost","query":"","ip":"::1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0}
+{"level":"INFO","time":"2022-08-21T02:38:01.430+0800","caller":"logger/logger.go:97","msg":"/test","status":200,"method":"GET","path":"/test","query":"","ip":"::1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0.0001879}
+{"level":"INFO","time":"2022-08-21T02:38:18.405+0800","caller":"RedBubble/main.go:86","msg":"关闭服务器 ..."}
+{"level":"INFO","time":"2022-08-21T02:38:18.406+0800","caller":"RedBubble/main.go:95","msg":"服务器成功退出"}
+{"level":"INFO","time":"2022-08-21T02:38:38.659+0800","caller":"RedBubble/main.go:33","msg":"初始化日志成功"}
+{"level":"INFO","time":"2022-08-21T02:39:19.538+0800","caller":"logger/logger.go:97","msg":"/api/post/addPost","status":200,"method":"POST","path":"/api/post/addPost","query":"","ip":"::1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0.016632}
+{"level":"INFO","time":"2022-08-21T02:41:02.463+0800","caller":"RedBubble/main.go:86","msg":"关闭服务器 ..."}
+{"level":"INFO","time":"2022-08-21T02:41:02.464+0800","caller":"RedBubble/main.go:95","msg":"服务器成功退出"}

@@ -67,8 +67,9 @@ func JWTAuthMiddleware() func(c *gin.Context) {
 
 		fmt.Printf("claims:%v\n", claims)
 
-		// 将当前请求的userID信息保存到请求的上下文c上
+		// 将当前请求的userID和username信息保存到请求的上下文c上
 		c.Set(parseUser.CtxUserIDKey, claims["user_id"])
+		c.Set(parseUser.CtxUsernameKey, claims["username"])
 
 		c.Next() // 后续的处理请求的函数中 可以用过c.Get(CtxUserIDKey) 来获取当前请求的用户信息
 	}

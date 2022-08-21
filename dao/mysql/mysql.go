@@ -78,6 +78,8 @@ func CreateSQLTable() (err error) {
 	err = mdb.Set("gorm:table_options", "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 comment '用户表'").Migrator().CreateTable(&models.User{}) // 设置ENGINE=InnoDB，字符集=utf8mb4
 	//category表
 	err = mdb.Set("gorm:table_options", "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 comment '帖子分类表'").Migrator().CreateTable(&models.Category{}) // 设置ENGINE=InnoDB，字符集=utf8mb4
+	//post类
+	err = mdb.Set("gorm:table_options", "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 comment '帖子表'").Migrator().CreateTable(&models.Post{}) // 设置ENGINE=InnoDB，字符集=utf8mb4
 
 	return
 }

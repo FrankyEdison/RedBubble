@@ -9,6 +9,7 @@ import (
 	"RedBubble/service"
 	"RedBubble/utils/validator_"
 	"errors"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
 	"go.uber.org/zap"
@@ -87,11 +88,11 @@ func SignInHandler(c *gin.Context) {
 // 3、测试jwt鉴权
 func TestAuthHandler(c *gin.Context) {
 	//1、从gin.context中获取jwt中存放的userID
-	userID, err := parseUser.GetCurrentUser(c)
+	userID, username, err := parseUser.GetCurrentUser(c)
 	//2、响应
 	if err != nil {
 		response.Error(c, responseCode.CodeNeedLogin)
 		return
 	}
-	response.Success(c, userID)
+	response.Success(c, fmt.Sprintf("userId:%d, username:%s", userID, username))
 }
