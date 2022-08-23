@@ -30,7 +30,7 @@ func AddPostHandle(c *gin.Context) {
 	post := new(models.Post)
 	post.UserId = userID
 	post.Username = username
-	post.CommunityID = p1.CommunityID
+	post.CategoryId = p1.CategoryId
 	post.Status = 0
 	post.Title = p1.Title
 	post.Content = p1.Content
@@ -55,13 +55,49 @@ func GetPostDetailHandle(c *gin.Context) {
 		response.Error(c, responseCode.CodeInvalidParam)
 		return
 	}
-
+	// 2.1 获取帖子详情
 	postDetail, err := service.GetPostDetailById(id)
 	if err != nil {
 		zap.L().Error("获取帖子失败", zap.Error(err))
 		response.Error(c, responseCode.CodeServerBusy)
 		return
 	}
+	// 2.2 获取分类详情
+	categoryDetail, err := service.GetCategoryById(postDetail.CategoryId)
+	if err != nil {
+		zap.L().Error("获取分类失败", zap.Error(err))
+		response.Error(c, responseCode.CodeServerBusy)
+		return
+	}
 
-	response.Success(c, postDetail)
+	// 3.响应
+	type ReturnDetail struct {
+		//加了json字段的话就等于分了类，不然Post和Category里同名的字段就会糅合一起导致不显示
+		*models.Post     `json:"post"`
+		*models.Category `json:"category"`
+	}
+	p2 := &ReturnDetail{
+		Post:     postDetail,
+		Category: categoryDetail,
+	}
+	response.Success(c, p2)
+}
+
+//分页获取所有帖子
+func GetPostListByPageHandle(c *gin.Context) {
+	// 1. 处理请求参数
+	p1 := new(models.ByPage)
+	if err := c.ShouldBind(p1); err != nil {
+		response.Error(c, responseCode.CodeInvalidParam)
+		return
+	}
+
+	postListByPage, err := service.GetPostListByPage(p1.PageSize, p1.PageNumber)
+	if err != nil {
+		zap.L().Error("分页获取帖子列表失败", zap.Error(err))
+		response.Error(c, responseCode.CodeServerBusy)
+		return
+	}
+
+	response.Success(c, postListByPage)
 }
