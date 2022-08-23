@@ -34,6 +34,8 @@ func Setup() *gin.Engine {
 		postGroup.POST("/addPost", middleware.JWTAuthMiddleware(), controller.AddPostHandle)
 		//获取帖子详情
 		postGroup.GET("/:postId", controller.GetPostDetailHandle)
+		//分页获取所有帖子
+		postGroup.GET("/getPostListByPage", controller.GetPostListByPageHandle)
 	}
 
 	//测试使用，须登录后才能请求该路由，已注册中间件JWTAuthMiddleware()
