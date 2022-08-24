@@ -335,3 +335,13 @@
 {"level":"INFO","time":"2022-08-23T20:09:51.112+0800","caller":"logger/logger.go:97","msg":"/api/post/getPostListByPage","status":200,"method":"GET","path":"/api/post/getPostListByPage","query":"page_size=2&page_number=1","ip":"::1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0.0014765}
 {"level":"INFO","time":"2022-08-23T20:12:52.252+0800","caller":"RedBubble/main.go:86","msg":"关闭服务器 ..."}
 {"level":"INFO","time":"2022-08-23T20:12:52.252+0800","caller":"RedBubble/main.go:95","msg":"服务器成功退出"}
+{"level":"INFO","time":"2022-08-23T20:43:22.974+0800","caller":"RedBubble/main.go:33","msg":"初始化日志成功"}
+{"level":"INFO","time":"2022-08-23T20:43:26.012+0800","caller":"logger/logger.go:97","msg":"/api/post/getPostListByPage","status":200,"method":"GET","path":"/api/post/getPostListByPage","query":"page_size=2&page_number=1","ip":"::1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0.0010217}
+{"level":"INFO","time":"2022-08-23T20:43:46.644+0800","caller":"logger/logger.go:97","msg":"/api/post/getPostListByPage","status":200,"method":"GET","path":"/api/post/getPostListByPage","query":"page_size=2&page_number=1","ip":"::1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0.0004867}
+{"level":"INFO","time":"2022-08-23T20:43:49.722+0800","caller":"RedBubble/main.go:86","msg":"关闭服务器 ..."}
+{"level":"INFO","time":"2022-08-23T20:43:49.734+0800","caller":"RedBubble/main.go:95","msg":"服务器成功退出"}
+{"level":"INFO","time":"2022-08-24T13:38:59.304+0800","caller":"RedBubble/main.go:33","msg":"初始化日志成功"}
+{"level":"INFO","time":"2022-08-24T13:39:14.379+0800","caller":"logger/logger.go:97","msg":"/api/post/getPostListByPage","status":200,"method":"GET","path":"/api/post/getPostListByPage","query":"page_size=2&page_number=1","ip":"::1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0.0061764}
+{"level":"INFO","time":"2022-08-24T13:39:46.244+0800","caller":"logger/logger.go:97","msg":"/api/post/10066159827161088","status":200,"method":"GET","path":"/api/post/10066159827161088","query":"","ip":"::1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0.0028771}
+{"level":"INFO","time":"2022-08-24T13:40:07.541+0800","caller":"RedBubble/main.go:86","msg":"关闭服务器 ..."}
+{"level":"INFO","time":"2022-08-24T13:40:07.541+0800","caller":"RedBubble/main.go:95","msg":"服务器成功退出"}
