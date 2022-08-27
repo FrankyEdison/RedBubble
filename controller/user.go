@@ -55,7 +55,7 @@ func SignInHandler(c *gin.Context) {
 		zap.L().Error("用户登录含非法参数", zap.Error(err))   // 请求参数不是json格式，响应错误
 		errs, ok := err.(validator.ValidationErrors) // 判断err是不是validator.ValidationErrors 类型
 		if !ok {
-			//若不是validator的错误类型，随便返回就行
+			//若不是validator的错误类型，直接返回参数错误就行了
 			response.Error(c, responseCode.CodeInvalidParam)
 			return
 		}

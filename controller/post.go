@@ -12,7 +12,7 @@ import (
 )
 
 //发布帖子
-func AddPostHandle(c *gin.Context) {
+func AddPostHandler(c *gin.Context) {
 	// 1. 处理请求参数
 	p1 := new(models.ParamAddPost)
 	if err := c.ShouldBindJSON(p1); err != nil {
@@ -47,7 +47,7 @@ func AddPostHandle(c *gin.Context) {
 }
 
 //获取帖子详情
-func GetPostDetailHandle(c *gin.Context) {
+func GetPostDetailHandler(c *gin.Context) {
 	// 1. 获取参数（在请求路径里的帖子id）
 	idStr := c.Param("postId")
 	id, err := strconv.ParseInt(idStr, 10, 64) //10进制，64位
@@ -84,7 +84,7 @@ func GetPostDetailHandle(c *gin.Context) {
 }
 
 //分页获取所有帖子
-func GetPostListByPageHandle(c *gin.Context) {
+func GetPostListByPageHandler(c *gin.Context) {
 	// 1. 处理请求参数
 	p1 := new(models.ByPage)
 	if err := c.ShouldBind(p1); err != nil {

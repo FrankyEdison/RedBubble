@@ -2,6 +2,7 @@ package main
 
 import (
 	"RedBubble/dao/mysql"
+	"RedBubble/dao/redis"
 	"RedBubble/logger"
 	"RedBubble/router"
 	"RedBubble/setting"
@@ -39,11 +40,11 @@ func main() {
 	}
 
 	//4、初始化Redis连接
-	//if err := redis.Init(setting.Conf.RedisConfig); err != nil {
-	//	fmt.Printf("初始化redis连接失败, err:d%v\n", err)
-	//	return
-	//}
-	//defer redis.Close()
+	if err := redis.Init(setting.Conf.RedisConfig); err != nil {
+		fmt.Printf("初始化redis连接失败, err:d%v\n", err)
+		return
+	}
+	defer redis.Close()
 
 	//5、初始化雪花算法库
 	if err := snowflake.Init(setting.Conf.SnowFlakeConfig.StartTime, setting.Conf.SnowFlakeConfig.MachineID); err != nil {
