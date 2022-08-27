@@ -31,11 +31,17 @@ func Setup() *gin.Engine {
 	postGroup := apiGroup.Group("/post") //帖子路由组
 	{
 		//发表帖子
-		postGroup.POST("/addPost", middleware.JWTAuthMiddleware(), controller.AddPostHandle)
+		postGroup.POST("/addPost", middleware.JWTAuthMiddleware(), controller.AddPostHandler)
 		//获取帖子详情
-		postGroup.GET("/:postId", controller.GetPostDetailHandle)
+		postGroup.GET("/:postId", controller.GetPostDetailHandler)
 		//分页获取所有帖子
-		postGroup.GET("/getPostListByPage", controller.GetPostListByPageHandle)
+		postGroup.GET("/getPostListByPage", controller.GetPostListByPageHandler)
+	}
+
+	voteGroup := apiGroup.Group("/vote") //点赞/点灭路由组
+	{
+		// 点赞/灭或者取消点赞/灭帖子
+		voteGroup.POST("/votePost", middleware.JWTAuthMiddleware(), controller.VotePostHandler)
 	}
 
 	//测试使用，须登录后才能请求该路由，已注册中间件JWTAuthMiddleware()
