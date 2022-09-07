@@ -5,7 +5,6 @@ import (
 	"errors"
 	"github.com/go-redis/redis/v9"
 	"math"
-	"strconv"
 	"time"
 )
 
@@ -49,36 +48,11 @@ var (
 	ErrorVoteRepeated   = errors.New("不允许重复投票")
 )
 
-// 发布帖子，要将帖子数据保存到redis中
-func CreatePost(postId, communityId int64) error {
-	ctx := context.Background()
-	//创建事务
-	pipeline := rdb.TxPipeline()
-	// 按帖子发布时间排序
-	pipeline.ZAdd(ctx, getRedisKey(KeyPostTimeZSet), redis.Z{
-		Score:  float64(time.Now().Unix()),
-		Member: postId,
-	})
-
-	// 按帖子点赞数排序
-	pipeline.ZAdd(ctx, getRedisKey(KeyPostScoreZSet), redis.Z{
-		Score:  float64(time.Now().Unix()), //基准值就是发布时间，点一个赞续432秒，如果一天有200个赞，那可以续到第二天
-		Member: postId,
-	})
-
-	// 把帖子id加到社区的set
-	cKey := getRedisKey(KeyCommunitySetPrefix + strconv.Itoa(int(communityId)))
-	pipeline.SAdd(ctx, cKey, postId)
-
-	_, err := pipeline.Exec(ctx)
-	return err
-}
-
 // 点赞/灭或者取消点赞/灭帖子
 func VotePost(userId, postId string, voteAction float64) (err error) {
 	ctx := context.Background()
 	// 1. 判断投票限制
-	// 去redis取帖子发布时间
+	// 去redis取帖子发布时间，点赞/灭时间只限帖子发布的一周内，若超过时间则不允许点赞/灭，且会将 点赞-点灭 的数量存到mysql中
 	postTime := rdb.ZScore(ctx, getRedisKey(KeyPostTimeZSet), postId).Val() // ZScore():获取元素的score
 	if float64(time.Now().Unix())-postTime > secondsOfOneWeekTime {
 		return ErrorVoteTimeExpire
