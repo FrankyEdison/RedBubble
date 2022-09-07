@@ -83,8 +83,8 @@ func GetPostDetailHandler(c *gin.Context) {
 	response.Success(c, p2)
 }
 
-//分页获取所有帖子
-func GetPostListByPageHandler(c *gin.Context) {
+//分页获取所有帖子（根据发表时间排序）
+func GetPostListByPageByTimeHandler(c *gin.Context) {
 	// 1. 处理请求参数
 	p1 := new(models.ByPage)
 	if err := c.ShouldBind(p1); err != nil {
@@ -92,7 +92,34 @@ func GetPostListByPageHandler(c *gin.Context) {
 		return
 	}
 
-	postListByPage, err := service.GetPostListByPage(p1.PageSize, p1.PageNumber)
+	postListByPage, err := service.GetPostListByPageByTime(p1.PageSize, p1.PageNumber)
+	if err != nil {
+		zap.L().Error("分页获取帖子列表失败", zap.Error(err))
+		response.Error(c, responseCode.CodeServerBusy)
+		return
+	}
+
+	response.Success(c, postListByPage)
+}
+
+//分页获取所有帖子（根据点赞得分排序）
+/**
+因为点赞得分的数据是存在redis里的，数据类型是ZSet，ZSet的score存分数、member存postId。
+步骤：
+	1、先去redis查询该分段的postId
+	2、根据postId去mysql查详细信息
+问：为什么member不能存整个帖子的信息呢？这样直接查redis就可以查出来所有帖子的信息了
+答：因为点赞得分会经常被修改，修改时是根据member来找到这个score从而修改score，member要完全一致才能找到对应的score，member太长的话会导致修改点赞得分不方便
+*/
+func GetPostListByPageByScoreHandler(c *gin.Context) {
+	// 1. 处理请求参数
+	p1 := new(models.ByPage)
+	if err := c.ShouldBind(p1); err != nil {
+		response.Error(c, responseCode.CodeInvalidParam)
+		return
+	}
+
+	postListByPage, err := service.GetPostListByPageByScore(p1.PageSize, p1.PageNumber)
 	if err != nil {
 		zap.L().Error("分页获取帖子列表失败", zap.Error(err))
 		response.Error(c, responseCode.CodeServerBusy)

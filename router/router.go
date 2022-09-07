@@ -18,6 +18,9 @@ func Setup() *gin.Engine {
 		userGroup.POST("/signUp", controller.SignUpHandler) // localhost:8081/api/user/signUp
 		//用户登录
 		userGroup.POST("/signIn", controller.SignInHandler)
+		/**
+		已注册的用户：123:111222
+		*/
 	}
 
 	categoryGroup := apiGroup.Group("/category") // 帖子分类路由组
@@ -34,8 +37,10 @@ func Setup() *gin.Engine {
 		postGroup.POST("/addPost", middleware.JWTAuthMiddleware(), controller.AddPostHandler)
 		//获取帖子详情
 		postGroup.GET("/:postId", controller.GetPostDetailHandler)
-		//分页获取所有帖子
-		postGroup.GET("/getPostListByPage", controller.GetPostListByPageHandler)
+		//分页获取所有帖子（根据发表时间排序）
+		postGroup.GET("/getPostListByPageByTime", controller.GetPostListByPageByTimeHandler)
+		//分页获取所有帖子（根据点赞得分排序）
+		postGroup.GET("/getPostListByPageByScore", controller.GetPostListByPageByScoreHandler)
 	}
 
 	voteGroup := apiGroup.Group("/vote") //点赞/点灭路由组
