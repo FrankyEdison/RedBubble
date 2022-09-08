@@ -427,3 +427,15 @@
 {"level":"INFO","time":"2022-09-08T00:19:43.144+0800","caller":"logger/logger.go:97","msg":"/api/post/getPostListByPageByScore","status":200,"method":"GET","path":"/api/post/getPostListByPageByScore","query":"page_size=4&page_number=1","ip":"::1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0.0041405}
 {"level":"INFO","time":"2022-09-08T00:20:48.436+0800","caller":"RedBubble/main.go:87","msg":"关闭服务器 ..."}
 {"level":"INFO","time":"2022-09-08T00:20:48.436+0800","caller":"RedBubble/main.go:96","msg":"服务器成功退出"}
+{"level":"INFO","time":"2022-09-08T21:41:23.582+0800","caller":"RedBubble/main.go:34","msg":"初始化日志成功"}
+{"level":"INFO","time":"2022-09-08T21:42:33.695+0800","caller":"logger/logger.go:97","msg":"/api/post/getPostListByCategoryId/1","status":200,"method":"GET","path":"/api/post/getPostListByCategoryId/1","query":"page_size=3&page_number=1","ip":"::1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0.0044042}
+{"level":"INFO","time":"2022-09-08T21:44:40.589+0800","caller":"logger/logger.go:97","msg":"/api/post/getPostListByCategoryId/1","status":200,"method":"GET","path":"/api/post/getPostListByCategoryId/1","query":"page_size=3&page_number=1","ip":"::1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0.0025937}
+{"level":"INFO","time":"2022-09-08T21:52:10.760+0800","caller":"logger/logger.go:97","msg":"/api/post/getPostListByCategoryId/1","status":200,"method":"GET","path":"/api/post/getPostListByCategoryId/1","query":"page_size=2&page_number=1","ip":"::1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0.0033583}
+{"level":"INFO","time":"2022-09-08T21:53:35.973+0800","caller":"RedBubble/main.go:87","msg":"关闭服务器 ..."}
+{"level":"INFO","time":"2022-09-08T21:53:35.973+0800","caller":"RedBubble/main.go:96","msg":"服务器成功退出"}
+{"level":"INFO","time":"2022-09-08T22:34:24.743+0800","caller":"RedBubble/main.go:34","msg":"初始化日志成功"}
+{"level":"INFO","time":"2022-09-08T22:34:35.275+0800","caller":"logger/logger.go:97","msg":"/api/post/getPostListByCategoryId/1","status":404,"method":"GET","path":"/api/post/getPostListByCategoryId/1","query":"page_size=2&page_number=1","ip":"::1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0}
+{"level":"INFO","time":"2022-09-08T22:34:49.545+0800","caller":"logger/logger.go:97","msg":"/api/post/getPostListByCategoryId/1","status":404,"method":"GET","path":"/api/post/getPostListByCategoryId/1","query":"page_size=2&page_number=1","ip":"::1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0}
+{"level":"INFO","time":"2022-09-08T22:35:04.345+0800","caller":"logger/logger.go:97","msg":"/api/post/getPostListByCategoryIdByPageByScore/1","status":200,"method":"GET","path":"/api/post/getPostListByCategoryIdByPageByScore/1","query":"page_size=2&page_number=1","ip":"::1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0.0036352}
+{"level":"INFO","time":"2022-09-08T22:35:26.315+0800","caller":"RedBubble/main.go:87","msg":"关闭服务器 ..."}
+{"level":"INFO","time":"2022-09-08T22:35:26.315+0800","caller":"RedBubble/main.go:96","msg":"服务器成功退出"}

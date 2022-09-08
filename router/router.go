@@ -34,13 +34,15 @@ func Setup() *gin.Engine {
 	postGroup := apiGroup.Group("/post") //帖子路由组
 	{
 		//发表帖子
-		postGroup.POST("/addPost", middleware.JWTAuthMiddleware(), controller.AddPostHandler)
-		//获取帖子详情
-		postGroup.GET("/:postId", controller.GetPostDetailHandler)
+		postGroup.POST("/addPost", middleware.JWTAuthMiddleware(), controller.AddPostHandler) //参数是json格式
+		//获取单个帖子详情
+		postGroup.GET("/:postId", controller.GetPostDetailHandler) //参数在路径中
 		//分页获取所有帖子（根据发表时间排序）
-		postGroup.GET("/getPostListByPageByTime", controller.GetPostListByPageByTimeHandler)
+		postGroup.GET("/getPostListByPageByTime", controller.GetPostListByPageByTimeHandler) //参数是form格式
 		//分页获取所有帖子（根据点赞得分排序）
 		postGroup.GET("/getPostListByPageByScore", controller.GetPostListByPageByScoreHandler)
+		//根据分类id分页获取该分类的所有帖子（根据点赞得分排序）
+		postGroup.GET("/getPostListByCategoryIdByPageByScore/:cateId", controller.GetPostListByCategoryIdHandler) //部分参数在路径中，部分是form格式
 	}
 
 	voteGroup := apiGroup.Group("/vote") //点赞/点灭路由组
