@@ -53,14 +53,14 @@ func VotePost(userId, postId string, voteAction float64) (err error) {
 	ctx := context.Background()
 	// 1. 判断投票限制
 	// 去redis取帖子发布时间，点赞/灭时间只限帖子发布的一周内，若超过时间则不允许点赞/灭，且会将 点赞-点灭 的数量存到mysql中
-	postTime := rdb.ZScore(ctx, getRedisKey(KeyPostTimeZSet), postId).Val() // ZScore():获取元素的score
+	postTime := rdb.ZScore(ctx, GetRedisKey(KeyPostTimeZSet), postId).Val() // ZScore():获取元素的score
 	if float64(time.Now().Unix())-postTime > secondsOfOneWeekTime {
 		return ErrorVoteTimeExpire
 	}
 
 	// 2. 更新贴子的分数
 	// 判断用户是否重复投票
-	preVoteAction := rdb.ZScore(ctx, getRedisKey(KeyPostVoteZSetPrefix+postId), userId).Val()
+	preVoteAction := rdb.ZScore(ctx, GetRedisKey(KeyPostVoteZSetPrefix+postId), userId).Val()
 	if voteAction == preVoteAction {
 		return ErrorVoteRepeated
 	}
@@ -75,13 +75,13 @@ func VotePost(userId, postId string, voteAction float64) (err error) {
 
 	//创建事务
 	pipeline := rdb.TxPipeline()
-	pipeline.ZIncrBy(ctx, getRedisKey(KeyPostScoreZSet), op*diff*scorePerVote, postId) //增加元素分值
+	pipeline.ZIncrBy(ctx, GetRedisKey(KeyPostScoreZSet), op*diff*scorePerVote, postId) //增加元素分值
 
 	// 3. 更新用户为该贴子点赞/灭的操作记录
 	if voteAction == 0 {
-		pipeline.ZRem(ctx, getRedisKey(KeyPostVoteZSetPrefix+postId), userId) //删除元素
+		pipeline.ZRem(ctx, GetRedisKey(KeyPostVoteZSetPrefix+postId), userId) //删除元素
 	} else {
-		pipeline.ZAdd(ctx, getRedisKey(KeyPostVoteZSetPrefix+postId), redis.Z{ //添加元素
+		pipeline.ZAdd(ctx, GetRedisKey(KeyPostVoteZSetPrefix+postId), redis.Z{ //添加元素
 			Score:  voteAction, // 赞成票还是反对票
 			Member: userId,
 		})

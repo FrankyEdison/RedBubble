@@ -6,6 +6,7 @@ import (
 	"RedBubble/common/responseCode"
 	"RedBubble/models"
 	"RedBubble/service"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
 	"strconv"
@@ -46,7 +47,7 @@ func AddPostHandler(c *gin.Context) {
 	response.Success(c, nil)
 }
 
-//获取帖子详情
+//获取单个帖子详情
 func GetPostDetailHandler(c *gin.Context) {
 	// 1. 获取参数（在请求路径里的帖子id）
 	idStr := c.Param("postId")
@@ -110,6 +111,7 @@ func GetPostListByPageByTimeHandler(c *gin.Context) {
 	2、根据postId去mysql查详细信息
 问：为什么member不能存整个帖子的信息呢？这样直接查redis就可以查出来所有帖子的信息了
 答：因为点赞得分会经常被修改，修改时是根据member来找到这个score从而修改score，member要完全一致才能找到对应的score，member太长的话会导致修改点赞得分不方便
+todo：若帖子的点赞时间一过，就将 点赞-点灭 个数保存到mysql的post表中
 */
 func GetPostListByPageByScoreHandler(c *gin.Context) {
 	// 1. 处理请求参数
@@ -127,4 +129,30 @@ func GetPostListByPageByScoreHandler(c *gin.Context) {
 	}
 
 	response.Success(c, postListByPage)
+}
+
+//根据分类id分页获取所有帖子（根据点赞得分排序）
+func GetPostListByCategoryIdHandler(c *gin.Context) {
+	// 1. 获取参数（在请求路径里的分类id）
+	idStr := c.Param("cateId")
+	cateId, err := strconv.ParseInt(idStr, 10, 64) //10进制，64位
+	if err != nil {
+		response.Error(c, responseCode.CodeInvalidParam)
+		return
+	}
+	page := new(models.ByPage)
+	if err := c.ShouldBind(page); err != nil {
+		response.Error(c, responseCode.CodeInvalidParam)
+		return
+	}
+	fmt.Printf("cateId:%d, pageSize:%d, pageNumber:%d\n", cateId, page.PageSize, page.PageNumber)
+
+	// 2. 根据cateId获取所有帖子
+	postList, err := service.GetPostListByCategoryId(cateId, page.PageSize, page.PageNumber)
+	if err != nil {
+		zap.L().Error("获取帖子列表失败", zap.Error(err))
+		response.Error(c, responseCode.CodeServerBusy)
+		return
+	}
+	response.Success(c, postList)
 }

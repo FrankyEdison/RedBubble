@@ -72,3 +72,39 @@ func GetPostListByPageByScore(pageSize int, pageNumber int) (postListByPage []*m
 
 	return postListByPage, nil
 }
+
+//根据分类id分页获取所有帖子（根据点赞得分排序）
+func GetPostListByCategoryId(cateId int64, pageSize int, pageNumber int) (postListByPage []*models.Post, err error) {
+	//1、先根据 redbubble:category:1 表和 redbubble:post:score 表生成 redbubble:category:score:1 表，该表记录了分类1中的所有帖子，且以点赞-点灭数为score排序，该表时长为一分钟
+	//   然后查出redbubble:category:score:1中该分段的postId和对应的分数
+	postIdsWithScore, err := redis.GetPostListByCategoryId(cateId, pageSize, pageNumber)
+
+	if err != nil {
+		zap.L().Error("分页查询redis失败", zap.Error(err))
+		return nil, err
+	}
+	var postIds = make([]string, 0, len(postIdsWithScore)) //获取该分段的postId
+	for _, value := range postIdsWithScore {
+		postIds = append(postIds, value.PostId)
+		fmt.Printf("postId:%s, score:%f\n", value.PostId, value.Score)
+	}
+
+	//2、根据postIds去mysql查详细信息
+	//重点：返回的帖子列表须按照我传的postIds的顺序，不然就做不到得分从高到低
+	postListByPage, err = mysql.GetPostListByPostIds(postIds)
+	if err != nil {
+		zap.L().Error("分页查询mysql失败", zap.Error(err))
+		return nil, err
+	}
+
+	//3、给对应的post详情加上点赞得分
+	for index, value := range postListByPage {
+		value.Likes = int32((postIdsWithScore[index].Score - 1661593026) / 432)
+		fmt.Printf("帖子标题:%s, score:%d\n", value.Title, value.Likes)
+	}
+
+	// PS:若只计点赞的票数，不计点灭的票数，则用以下方法
+	// likes, err := redis.GetPostsLike(postIds)
+
+	return postListByPage, nil
+}
