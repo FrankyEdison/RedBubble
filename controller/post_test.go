@@ -37,6 +37,7 @@ func TestAddPostHandler(t *testing.T) {
 	if err := json.Unmarshal(w.Body.Bytes(), res); err != nil {
 		t.Fatalf("json.Unmarshal w.Body failed, err:%v\n", err)
 	}
+	// 实际的res返回的东西，data:<nil>, msg:需要登录, code:1006
 	assert.Equal(t, res.Code, responseCode.CodeNeedLogin)
-	assert.Equal(t, res.Code.Msg(), responseCode.CodeNeedLogin.Msg())
+	assert.Equal(t, res.Msg, responseCode.CodeNeedLogin.Msg())
 }
