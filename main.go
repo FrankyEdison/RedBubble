@@ -18,6 +18,24 @@ import (
 	"time"
 )
 
+// @title 			RedBubble项目接口文档
+// @version 		1.0
+// @description 	RedBubble后端接口
+// @termsOfService  http://swagger.io/terms/
+
+// @contact.name 	Franky
+// @contact.url 	http://www.swagger.io/support
+// @contact.email 	support@swagger.io
+
+// @license.name 	MIT License
+// @license.url 	https://mit-license.org/
+
+// @securityDefinitions.apikey ApiKeyAuth
+// @in 				header
+// @name 			Authorization
+
+// @host 			127.0.0.1:8081
+// @BasePath 		/api
 func main() {
 	//1、加载配置
 	if err := setting.Init(); err != nil {

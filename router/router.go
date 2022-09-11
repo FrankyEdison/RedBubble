@@ -5,11 +5,19 @@ import (
 	"RedBubble/logger"
 	"RedBubble/middleware"
 	"github.com/gin-gonic/gin"
+
+	_ "RedBubble/docs" // 导入生成的docs
+
+	"github.com/swaggo/files"                  // swagger embed files
+	ginSwagger "github.com/swaggo/gin-swagger" // gin-swagger middleware
 )
 
 func Setup() *gin.Engine {
 	r := gin.New()
 	r.Use(logger.GinLogger(), logger.GinRecovery(true))
+	r.Use(middleware.Cors())
+	// 注册swagger的路由
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	apiGroup := r.Group("/api")          // 给所有路由添加前缀/api
 	userGroup := apiGroup.Group("/user") // user路由组
