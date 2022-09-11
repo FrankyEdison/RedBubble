@@ -1,0 +1,112 @@
+basePath: /api
+definitions:
+  models.ResponseAllCategory:
+    properties:
+      code:
+        description: 业务响应状态码
+        type: integer
+      data:
+        description: 数据
+        items:
+          $ref: '#/definitions/models.docAllCategory'
+        type: array
+      msg:
+        description: 提示信息
+        type: string
+    type: object
+  models.ResponseCategory:
+    properties:
+      code:
+        description: 业务响应状态码
+        type: integer
+      data:
+        $ref: '#/definitions/models.docCategory'
+        description: 数据
+      msg:
+        description: 提示信息
+        type: string
+    type: object
+  models.docAllCategory:
+    properties:
+      categoryName:
+        type: string
+      introduction:
+        type: string
+    type: object
+  models.docCategory:
+    properties:
+      categoryName:
+        type: string
+      createdAt:
+        type: string
+      id:
+        type: integer
+      introduction:
+        type: string
+    type: object
+host: 127.0.0.1:8081
+info:
+  contact:
+    email: support@swagger.io
+    name: Franky
+    url: http://www.swagger.io/support
+  description: RedBubble后端接口
+  license:
+    name: MIT License
+    url: https://mit-license.org/
+  termsOfService: http://swagger.io/terms/
+  title: RedBubble项目接口文档
+  version: "1.0"
+paths:
+  /category/getAllCategory:
+    get:
+      consumes:
+      - application/json
+      description: 获取所有帖子分类
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.ResponseAllCategory'
+        "500":
+          description: 服务繁忙
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: 获取所有帖子分类
+      tags:
+      - 帖子分类
+  /category/getCategoryById/{cateId}:
+    get:
+      consumes:
+      - application/json
+      description: 根据分类id获取分类详情
+      parameters:
+      - description: 分类id
+        in: path
+        name: cateId
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.ResponseCategory'
+        "500":
+          description: 服务繁忙
+          schema:
+            type: string
+      summary: 获取某个分类详情
+      tags:
+      - 帖子分类
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
