@@ -5,6 +5,7 @@ import (
 	"RedBubble/logger"
 	"RedBubble/middleware"
 	"github.com/gin-gonic/gin"
+	"time"
 
 	_ "RedBubble/docs" // 导入生成的docs
 
@@ -15,7 +16,9 @@ import (
 func Setup() *gin.Engine {
 	r := gin.New()
 	r.Use(logger.GinLogger(), logger.GinRecovery(true))
-	r.Use(middleware.Cors())
+	r.Use(middleware.Cors())                                //为所有路由注册跨域中间件
+	r.Use(middleware.RateLimitMiddleware(2*time.Second, 1)) //为所有路由注册限流中间件，2*time.Second代表2秒添加一个令牌，cap=1代表令牌桶的最大容量
+
 	// 注册swagger的路由
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
