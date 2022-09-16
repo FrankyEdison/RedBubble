@@ -28,7 +28,7 @@ func JWTAuthMiddleware() func(c *gin.Context) {
 		fmt.Printf("authHeaer:%s\n", authHeader)
 		if authHeader == "" {
 			response.Error(c, responseCode.CodeNeedLogin)
-			c.Abort()
+			c.Abort() //不执行后续代码
 			return
 		}
 		// 按空格分割，将Authorization分成Bearer和jwt字符串两部分
@@ -36,7 +36,7 @@ func JWTAuthMiddleware() func(c *gin.Context) {
 		//判断Authorization格式是否准确
 		if !(len(parts) == 2 && parts[0] == "Bearer") {
 			response.Error(c, responseCode.CodeInvalidToken)
-			c.Abort()
+			c.Abort() //不执行后续代码
 			return
 		}
 		// 获取parts[1]即jwt字符串，并解析它，须转换数据类型
@@ -44,7 +44,7 @@ func JWTAuthMiddleware() func(c *gin.Context) {
 		//令牌过期会在这里判断出来，并赋值到err中
 		if err != nil {
 			response.ErrorWithMsg(c, responseCode.CodeInvalidToken, err.Error())
-			c.Abort()
+			c.Abort() //不执行后续代码
 			return
 		}
 

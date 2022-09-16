@@ -6,6 +6,7 @@ require (
 	github.com/BurntSushi/toml v1.1.0 // indirect
 	github.com/bwmarrin/snowflake v0.3.0
 	github.com/fsnotify/fsnotify v1.5.4
+	github.com/gin-contrib/pprof v1.4.0
 	github.com/gin-gonic/gin v1.8.1
 	github.com/go-openapi/spec v0.20.7 // indirect
 	github.com/go-openapi/swag v0.22.3 // indirect
@@ -15,6 +16,7 @@ require (
 	github.com/go-redis/redis/v9 v9.0.0-beta.1
 	github.com/goccy/go-json v0.9.11 // indirect
 	github.com/golang-jwt/jwt/v4 v4.4.2
+	github.com/jessevdk/go-flags v1.5.0 // indirect
 	github.com/juju/ratelimit v1.0.2
 	github.com/mattn/go-isatty v0.0.16 // indirect
 	github.com/pelletier/go-toml/v2 v2.0.5 // indirect
@@ -23,6 +25,7 @@ require (
 	github.com/swaggo/files v0.0.0-20220728132757-551d4a08d97a
 	github.com/swaggo/gin-swagger v1.5.3
 	github.com/swaggo/swag v1.8.5
+	github.com/uber/go-torch v0.0.0-20181107071353-86f327cc820e // indirect
 	go.uber.org/zap v1.21.0
 	golang.org/x/crypto v0.0.0-20220829220503-c86fa9a7ed90 // indirect
 	golang.org/x/net v0.0.0-20220909164309-bea034e7d591 // indirect
