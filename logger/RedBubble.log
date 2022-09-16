@@ -1661,3 +1661,27 @@
 {"level":"INFO","time":"2022-09-13T23:53:28.551+0800","caller":"logger/logger.go:97","msg":"/api/post/getPostListByPageByTime","status":200,"method":"GET","path":"/api/post/getPostListByPageByTime","query":"page_size=2&page_number=1","ip":"::1","user-agent":"PostmanRuntime/7.29.2","errors":"","cost":0}
 {"level":"INFO","time":"2022-09-13T23:53:31.689+0800","caller":"RedBubble/main.go:105","msg":"关闭服务器 ..."}
 {"level":"INFO","time":"2022-09-13T23:53:31.689+0800","caller":"RedBubble/main.go:114","msg":"服务器成功退出"}
+{"level":"INFO","time":"2022-09-17T01:29:58.267+0800","caller":"RedBubble/main.go:52","msg":"初始化日志成功"}
+{"level":"INFO","time":"2022-09-17T01:30:15.839+0800","caller":"logger/logger.go:97","msg":"/debug/pprof/","status":200,"method":"GET","path":"/debug/pprof/","query":"","ip":"::1","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36","errors":"","cost":0.0005151}
+{"level":"INFO","time":"2022-09-17T01:30:16.049+0800","caller":"logger/logger.go:97","msg":"/favicon.ico","status":404,"method":"GET","path":"/favicon.ico","query":"","ip":"::1","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36","errors":"","cost":0}
+{"level":"INFO","time":"2022-09-17T01:31:39.152+0800","caller":"logger/logger.go:97","msg":"/debug/pprof/profile","status":200,"method":"GET","path":"/debug/pprof/profile","query":"seconds=10","ip":"::1","user-agent":"Go-http-client/1.1","errors":"","cost":10.0062255}
+{"level":"INFO","time":"2022-09-17T01:34:43.665+0800","caller":"logger/logger.go:97","msg":"/ui/","status":404,"method":"GET","path":"/ui/","query":"","ip":"::1","user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36","errors":"","cost":0.0008164}
+{"level":"INFO","time":"2022-09-17T01:47:10.908+0800","caller":"RedBubble/main.go:105","msg":"关闭服务器 ..."}
+{"level":"INFO","time":"2022-09-17T01:47:10.908+0800","caller":"RedBubble/main.go:114","msg":"服务器成功退出"}
+{"level":"INFO","time":"2022-09-17T01:47:13.134+0800","caller":"RedBubble/main.go:52","msg":"初始化日志成功"}
+{"level":"INFO","time":"2022-09-17T01:59:21.638+0800","caller":"logger/logger.go:97","msg":"/debug/pprof/heap","status":404,"method":"GET","path":"/debug/pprof/heap","query":"","ip":"::1","user-agent":"Go-http-client/1.1","errors":"","cost":0}
+{"level":"INFO","time":"2022-09-17T01:59:43.801+0800","caller":"logger/logger.go:97","msg":"/debug/pprof/profile","status":404,"method":"GET","path":"/debug/pprof/profile","query":"seconds=10","ip":"::1","user-agent":"Go-http-client/1.1","errors":"","cost":0}
+{"level":"INFO","time":"2022-09-17T01:59:53.814+0800","caller":"RedBubble/main.go:105","msg":"关闭服务器 ..."}
+{"level":"INFO","time":"2022-09-17T01:59:53.814+0800","caller":"RedBubble/main.go:114","msg":"服务器成功退出"}
+{"level":"INFO","time":"2022-09-17T02:00:26.129+0800","caller":"RedBubble/main.go:52","msg":"初始化日志成功"}
+{"level":"INFO","time":"2022-09-17T02:00:35.920+0800","caller":"logger/logger.go:97","msg":"/debug/pprof/heap","status":404,"method":"GET","path":"/debug/pprof/heap","query":"","ip":"::1","user-agent":"Go-http-client/1.1","errors":"","cost":0}
+{"level":"INFO","time":"2022-09-17T02:00:41.180+0800","caller":"logger/logger.go:97","msg":"/debug/pprof/profile","status":404,"method":"GET","path":"/debug/pprof/profile","query":"seconds=10","ip":"::1","user-agent":"Go-http-client/1.1","errors":"","cost":0}
+{"level":"INFO","time":"2022-09-17T02:00:52.238+0800","caller":"RedBubble/main.go:105","msg":"关闭服务器 ..."}
+{"level":"INFO","time":"2022-09-17T02:00:52.238+0800","caller":"RedBubble/main.go:114","msg":"服务器成功退出"}
+{"level":"INFO","time":"2022-09-17T02:01:02.460+0800","caller":"RedBubble/main.go:52","msg":"初始化日志成功"}
+{"level":"INFO","time":"2022-09-17T02:20:20.888+0800","caller":"RedBubble/main.go:105","msg":"关闭服务器 ..."}
+{"level":"INFO","time":"2022-09-17T02:20:20.888+0800","caller":"RedBubble/main.go:114","msg":"服务器成功退出"}
+{"level":"INFO","time":"2022-09-17T02:20:23.055+0800","caller":"RedBubble/main.go:52","msg":"初始化日志成功"}
+{"level":"INFO","time":"2022-09-17T02:20:30.187+0800","caller":"logger/logger.go:97","msg":"/debug/pprof/heap","status":200,"method":"GET","path":"/debug/pprof/heap","query":"","ip":"::1","user-agent":"Go-http-client/1.1","errors":"","cost":0.0005069}
+{"level":"INFO","time":"2022-09-17T02:24:08.097+0800","caller":"RedBubble/main.go:105","msg":"关闭服务器 ..."}
+{"level":"INFO","time":"2022-09-17T02:24:08.097+0800","caller":"RedBubble/main.go:114","msg":"服务器成功退出"}
